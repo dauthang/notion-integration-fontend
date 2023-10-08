@@ -30,6 +30,8 @@ function getItem(
 }
 
 const items: MenuItem[] = [
+  getItem("Dashboard", "dashboard", <UserOutlined />),
+  getItem("Notion", "notion", <UserOutlined />),
   getItem("User", "user", <UserOutlined />),
   getItem("Product", "product", <ShopOutlined />),
 ];
@@ -40,9 +42,12 @@ const MyLayout: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const onNavigate = useCallback((e: any) => {
-    navigate(e.key);
-  }, []);
+  const onNavigate = useCallback(
+    (e: any) => {
+      navigate(e.key);
+    },
+    [navigate]
+  );
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -53,7 +58,7 @@ const MyLayout: React.FC = () => {
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
-          defaultSelectedKeys={["user"]}
+          defaultSelectedKeys={["dashboard"]}
           mode="inline"
           items={items}
           onClick={(e) => onNavigate(e)}
@@ -68,9 +73,9 @@ const MyLayout: React.FC = () => {
           </Breadcrumb>
           <div
             style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
+              padding: 10,
+              // minHeight: 360,
+              // background: colorBgContainer,
             }}
           >
             <Outlet />

@@ -15,14 +15,8 @@ export const requestWithJwt = axios.create({
   withCredentials: false,
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-    "Access-Control-Allow-Headers":
-      "Content-Type, Authorization, X-Requested-With",
   },
 });
-
-console.log(process.env.REACT_APP_BASE_URL, "process.env.REACT_APP_API");
 
 requestWithJwt.interceptors.request.use(async (config: any) => {
   const refreshToken = getFromSessionStorage<string | null>("refresh-token");
